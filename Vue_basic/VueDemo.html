@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueDemo</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./data.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container" id="myApp">
+        <nav class="navbar navbar-light bg-light"><a class="navbar-brand" href="#">List</a></nav>
+        <nav class="navbar navbar-light bg-light"><span class="navbar-brand mb-0 h1">navbar</span></nav>
+        
+        <input type="text" v-model="foo">
+        <button class="btn btn-info" v-on:click="test">123</button>
+        <demo-table /> 
+    </div>
+    
+
+</body>
+</html>
+<script src="./demotable.js"></script>
+<script>
+    
+    var vm = new Vue({
+        el: '#myApp',
+        components:{
+            'demo-table': demotable
+        },
+        data: {
+            foo: 'bar'
+        },
+        created: function () { 
+            this.query()
+        },
+        methods: {
+            test: function() {
+                console.log('test')
+            },
+            query: function() {
+                axios.post('https://jxjasper.com/JasperFitness/JasperNews/Index')
+  
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+            }
+        }
+    })
+</script>
